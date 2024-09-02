@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info: 
+  title: Football competition
+  version: 1.0.0
+servers:
+  - url: https://competitionsList.com
+paths:
+  /competitions:
+    get:
+      description: Return the list of all football competitions.
+      responses:
+        '200':
+          description: A list of competitions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+
+    post:
+      description: Create a new football competition 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '201':
+          description: Competition created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+  /Team:
+    get:
+      description: Return a list of all football teams.
+      responses:
+        '200':
+          description: A list of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+
+    post:
+      description: Create a new football team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '201':
+          description: Team created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+      
+
+components:
+  schemas:
+    Competition:
+      type: object
+      properties:
+        name:
+          type: string
+          example: LIGA
+        country:
+          type: string
+          example: ESPAGNE
+      required:
+        - name
+        - country
+    Team:
+        type: object
+        properties:
+          name:
+            type: string
+            example: Real Madrid
+          slogan:
+            type: string
+          competitions:
+            type: array
+            items:
+            $ref: '#/components/schemas/Competition'
+            example:
+              - LIGA
+              -  UEFA CHAMPIONS LEAGUE
+          Player:
+            type: object
+            $ref: '#/components/schemas/Player'
+        required:
+          - name
+          - competitions
+          - player
+    Player:
+      type: object
+      properties:
+        name:
+          type: string
+        position:
+          type: string
+      required:
+        - name
+        - position
+      
