@@ -67,7 +67,6 @@ paths:
       requestBody:
         required: true
         content:
-          content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Player'
