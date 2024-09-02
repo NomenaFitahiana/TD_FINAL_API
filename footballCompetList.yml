@@ -61,6 +61,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
+  /Player:
+    get:
+      description: Return a list of player
+      responses:
+        '200':
+          description: A list of player
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+    post:
+      description: Create a new football player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: Player created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      
       
 
 components:
@@ -97,16 +125,20 @@ components:
             $ref: '#/components/schemas/Player'
         required:
           - name
-          - competitions
-          - player
+          - slogan
     Player:
       type: object
       properties:
         name:
           type: string
-        position:
+        number:
+          type: integer
+        player's strong foot:
           type: string
+          example: left or right
+       
       required:
         - name
-        - position
+        - number
+        - player's strong foot
       
