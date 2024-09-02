@@ -62,17 +62,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
   /Player:
-    get:
-      description: Return a list of player
-      responses:
-        '200':
-          description: A list of player
+    put:
+      description: Modify a specific player
+      requestBody:
+        required: true
+        content:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Player'
+                $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: Player updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+          
+            
     post:
       description: Create a new football player
       requestBody:
